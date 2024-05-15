@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import colors from "colors";
-import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import asyncHandler from "express-async-handler";
 import mongoBDConnect from "./config/db.js";
@@ -20,10 +19,6 @@ app.use(express.json());
 
 // cookie parser
 app.use(cookieParser());
-
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
-}
 
 // home route
 app.get("/", (req, res) => {

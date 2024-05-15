@@ -4,22 +4,82 @@ import productModel from "../models/product.model.js";
 import createError from "http-errors";
 import { successResponse } from "../helpers/responseHandler.js";
 import { productUploadToCloud } from "../utils/cloudinary.js";
+import filterQuery from "../helpers/filterQuery.js";
 
 /**
  * @description get all products
  */
 
 export const getAllProducts = asyncHanlder(async (req, res) => {
-  const result = await productModel.find({});
+  // query filter
+  const {
+    queries: { skip, limit, fields, sortBy },
+    filters,
+  } = filterQuery(req);
+
+  const result = await productModel
+    .find(filters)
+    .skip(skip)
+    .limit(limit)
+    .select(fields)
+    .sort(sortBy);
 
   if (!result.length) throw createError.NotFound("Couldn't find any data.");
+
+  // total data count with filter
+  const filterItems = await productModel.countDocuments(filters);
+
+  // total data count without filter
+  const totalItems = await productModel.countDocuments();
+
+  //  add links to each product
+  const products = result.map((product) => {
+    return {
+      ...product._doc,
+      links: {
+        self: `/api/v1/products/${product._id}`,
+        "add-to-cart": `api/v1/cart/add/${product._id}`,
+      },
+    };
+  });
+
+  // pagination
+  const { page } = req.query;
+  const pagination = {
+    limit,
+    previousPage: skip > 0 ? page - 1 : null,
+    currentPage: Math.floor(skip / limit) + 1,
+    nextPage: skip + limit < filterItems ? page + 1 : null,
+    totalPage: Math.ceil(filterItems / limit),
+    filterItems,
+    totalItems,
+  };
+
+  // links
+  const links = {
+    self: `/api/v1/products?limit=${limit}&page=${page}`,
+    first: `/api/v1/products?limit=${limit}&page=1`,
+    last: `/api/v1/products?limit=${limit}&page=${pagination.totalPage}`,
+    prev:
+      page > 1
+        ? `/api/v1/products?limit=${limit}&page=${pagination.previousPage}`
+        : null,
+    next:
+      page < pagination.totalPage
+        ? `/api/v1/products?limit=${limit}&page=${page + 1}`
+        : null,
+  };
+
+  // Set Cache-Control header
+  res.header("Cache-Control", "public,max-age=60");
 
   successResponse(res, {
     statusCode: 200,
     message: "All products data.",
     payload: {
-      total: result.length,
-      data: result,
+      links,
+      pagination,
+      data: products,
     },
   });
 });

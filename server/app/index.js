@@ -9,6 +9,7 @@ import { errorHandler } from "../middlewares/errorHandler.js";
 import authRouter from "../routes/auth.route.js";
 import productRouter from "../routes/product.route.js";
 import userRouter from "../routes/user.route.js";
+import routes from "./routes.js";
 
 const app = express();
 
@@ -26,9 +27,10 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use("/api/v1/products", productRouter);
-app.use("/api/v1/users", userRouter);
-app.use("/api/v1/auth", authRouter);
+// routes
+routes.forEach((route) => {
+  app.use(route.path, route.route);
+});
 
 // client error handling
 app.use(

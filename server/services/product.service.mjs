@@ -1,5 +1,5 @@
 import filterQuery from "../helpers/filterQuery.mjs";
-import productModel from "../models/product.model";
+import productModel from "../models/product.model.js";
 import createError from "http-errors";
 
 // get all product service

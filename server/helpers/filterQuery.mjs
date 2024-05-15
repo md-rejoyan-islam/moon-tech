@@ -2,11 +2,11 @@
  * @search_URL      :      ?status=in-stock&fields=brand,price&email=a@gmail.com&sort=name,age&price[eq]=50&page=4&limit=1
  */
 
-const filterQuery = (req) => {
+const filterQuery = (req, searchFields) => {
   let filters = { ...req.query };
 
   // sort ,page,limit exclude from filters
-  const excludeFilters = ["sort", "page", "limit", "fields"];
+  const excludeFilters = ["sort", "page", "limit", "fields", "search"];
   excludeFilters.forEach((field) => delete filters[field]);
 
   let filterString = JSON.stringify(filters);
@@ -30,16 +30,20 @@ const filterQuery = (req) => {
   filters = JSON.parse(filterString);
 
   // full text search with regular expression
-  if (req.query.q) {
-    const search = req.query.q;
+  if (req.query.search && searchFields.length) {
+    const search = req.query.search;
+
+    // _id remove from search fields with sortcut
+    const index = searchFields.indexOf("_id");
+    if (index > -1) {
+      searchFields.splice(index, 1);
+    }
 
     const regularExpression = { $regex: search, $options: "i" };
+
     filters = {
-      $or: [
-        { name: regularExpression },
-        { description: regularExpression },
-        { location: regularExpression },
-      ],
+      ...filters,
+      $or: [...searchFields.map((field) => ({ [field]: regularExpression }))],
     };
   }
 
@@ -86,7 +90,7 @@ const filterQuery = (req) => {
    */
 
   req.query.page = Number(req.query.page) || 1;
-  req.query.limit = Number(req.query.limit) || 2;
+  req.query.limit = Number(req.query.limit) || 10;
 
   if (req.query.page) {
     const { page, limit } = req.query;

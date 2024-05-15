@@ -1,71 +1,45 @@
-import mongoose from "mongoose";
-import asyncHanlder from "express-async-handler";
-import productModel from "../models/product.model.js";
+import asyncHandler from "express-async-handler";
 import createError from "http-errors";
+import checkMongoId from "../helpers/checkMongoId.mjs";
 import { successResponse } from "../helpers/responseHandler.js";
+import productModel from "../models/product.model.js";
+import {
+  addProductToWishListService,
+  deleteProductService,
+  getAllProductService,
+  getProductBySlugService,
+  removeProductFromWishListService,
+} from "../services/product.service.mjs";
 import { productUploadToCloud } from "../utils/cloudinary.js";
-import filterQuery from "../helpers/filterQuery.js";
 
 /**
  * @description get all products
  */
 
-export const getAllProducts = asyncHanlder(async (req, res) => {
-  // query filter
-  const {
-    queries: { skip, limit, fields, sortBy },
-    filters,
-  } = filterQuery(req);
+export const getAllProducts = asyncHandler(async (req, res) => {
+  // search query fields
+  const searchFields = ["name", "slug", "title", "brand", "category", "tags"];
 
-  const result = await productModel
-    .find(filters)
-    .skip(skip)
-    .limit(limit)
-    .select(fields)
-    .sort(sortBy);
+  // default page and limit value
+  req.query.page = Number(req.query.page) || 1;
+  req.query.limit = Number(req.query.limit) || 10;
 
-  if (!result.length) throw createError.NotFound("Couldn't find any data.");
+  // find product data
+  const { result, pagination } = await getAllProductService(req, searchFields);
 
-  // total data count with filter
-  const filterItems = await productModel.countDocuments(filters);
-
-  // total data count without filter
-  const totalItems = await productModel.countDocuments();
-
-  //  add links to each product
-  const products = result.map((product) => {
-    return {
-      ...product._doc,
-      links: {
-        self: `/api/v1/products/${product._id}`,
-        "add-to-cart": `api/v1/cart/add/${product._id}`,
-      },
-    };
-  });
-
-  // pagination
-  const { page } = req.query;
-  const pagination = {
-    limit,
-    previousPage: skip > 0 ? page - 1 : null,
-    currentPage: Math.floor(skip / limit) + 1,
-    nextPage: skip + limit < filterItems ? page + 1 : null,
-    totalPage: Math.ceil(filterItems / limit),
-    filterItems,
-    totalItems,
-  };
+  const limit = req.query.limit;
+  const page = req.query.page;
+  const totalPage = pagination.totalPage;
+  const prevPage = pagination.previousPage;
 
   // links
   const links = {
     self: `/api/v1/products?limit=${limit}&page=${page}`,
     first: `/api/v1/products?limit=${limit}&page=1`,
-    last: `/api/v1/products?limit=${limit}&page=${pagination.totalPage}`,
-    prev:
-      page > 1
-        ? `/api/v1/products?limit=${limit}&page=${pagination.previousPage}`
-        : null,
+    last: `/api/v1/products?limit=${limit}&page=${totalPage}`,
+    prev: page > 1 ? `/api/v1/products?limit=${limit}&page=${prevPage}` : null,
     next:
-      page < pagination.totalPage
+      page < totalPage
         ? `/api/v1/products?limit=${limit}&page=${page + 1}`
         : null,
   };
@@ -73,13 +47,14 @@ export const getAllProducts = asyncHanlder(async (req, res) => {
   // Set Cache-Control header
   res.header("Cache-Control", "public,max-age=60");
 
+  // response send with data
   successResponse(res, {
     statusCode: 200,
-    message: "All products data.",
+    message: "Product data fetched successfully",
     payload: {
       links,
       pagination,
-      data: products,
+      data: result,
     },
   });
 });
@@ -88,21 +63,31 @@ export const getAllProducts = asyncHanlder(async (req, res) => {
  * @description get single product by id
  */
 
-export const getProductById = asyncHanlder(async (req, res) => {
-  const { id } = req.params;
+export const getProductById = asyncHandler(async (req, res) => {
+  checkMongoId(req.params.id);
 
-  // id check
-  if (!mongoose.isValidObjectId(id)) {
-    throw createError.BadRequest("Invalid user id.");
-  }
-
-  const result = await productModel.findById(id);
-
-  if (!result) throw createError.NotFound("Couldn't find product.");
+  // data validation
+  const result = await getProductBySlugService(req.params.id);
 
   successResponse(res, {
     statusCode: 200,
-    message: "Product data.",
+    message: "Product data fetched successfully.",
+    payload: {
+      data: result,
+    },
+  });
+});
+
+// delete product by id
+export const deleteProductById = asyncHandler(async (req, res) => {
+  checkMongoId(req.params.id);
+
+  // find by id and delete
+  const result = await deleteProductService(req.params.id);
+
+  successResponse(res, {
+    statusCode: 200,
+    message: "Product data deleted successfully.",
     payload: {
       data: result,
     },
@@ -113,7 +98,7 @@ export const getProductById = asyncHanlder(async (req, res) => {
  * @description create new product
  */
 
-export const createProduct = asyncHanlder(async (req, res) => {
+export const createProduct = asyncHandler(async (req, res) => {
   const {
     processor_brand,
     processor_model,
@@ -198,6 +183,33 @@ export const createProduct = asyncHanlder(async (req, res) => {
     message: "Product created successfully.",
     payload: {
       data: product,
+    },
+  });
+});
+
+// product add to wishlist
+export const addProductToWishList = asyncHandler(async (req, res) => {
+  // prdocut add to wishlist
+  await addProductToWishListService(req);
+
+  successResponse(res, {
+    statusCode: 200,
+    message: "Product added to wishlist successfully.",
+    payload: {
+      data: req.me,
+    },
+  });
+});
+
+// product remove from wishlist
+export const removeProductFromWishList = asyncHandler(async (req, res) => {
+  await removeProductFromWishListService(req);
+
+  successResponse(res, {
+    statusCode: 200,
+    message: "Product removed from wishlist successfully.",
+    payload: {
+      data: req.me,
     },
   });
 });

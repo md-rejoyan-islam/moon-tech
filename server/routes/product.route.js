@@ -12,7 +12,7 @@ productRouter
   .route("/")
   .get(getAllProducts)
   .post(productPhotoUpload, createProduct);
-productRouter.route("/:id").get(getProductById);
+productRouter.route("/:id([0-9a-fA-F]{24})").get(getProductById);
 
 // export default router
 export default productRouter;

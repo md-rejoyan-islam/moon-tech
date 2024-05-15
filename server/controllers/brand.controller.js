@@ -1,6 +1,16 @@
 import createError from "http-errors";
 import { isValidObjectId } from "mongoose";
 import asyncHandler from "express-async-handler";
+import {
+  bulkDeleteBrandService,
+  createBrandService,
+  deleteBrandServiceById,
+  getAllBrandService,
+  getBrandServiceById,
+  updateBrandServiceById,
+} from "../services/brand.service.mjs";
+import { successResponse } from "../helpers/responseHandler.js";
+import checkMongoId from "../helpers/checkMongoId.mjs";
 
 /**
  *
@@ -90,8 +100,9 @@ export const createBrand = asyncHandler(async (req, res) => {
  * @apiError          ( Not Found 404 )      brand Data not found
  *
  */
-export const getBrandBySlug = asyncHandler(async (req, res) => {
-  const result = await getBrandServiceBySlug(req.params.slug);
+export const getBrandById = asyncHandler(async (req, res) => {
+  checkMongoId(req.params.id);
+  const result = await getBrandServiceById(req.params.id);
 
   // response with result
   successResponse(res, {
@@ -163,7 +174,7 @@ export const deleteBrandById = asyncHandler(async (req, res) => {
  */
 export const updateBrandById = asyncHandler(async (req, res) => {
   // id validation
-  checkMongoID(req.params.id);
+  checkMongoId(req.params.id);
 
   // data validation
   const options = {
@@ -171,7 +182,6 @@ export const updateBrandById = asyncHandler(async (req, res) => {
       name: req.body.name,
       slug: req.body.name && req.body.name.toLowerCase().split(" ").join("-"),
       description: req.body.description,
-      image: req.file && req?.file?.filename,
     },
   };
   const result = await updateBrandServiceById(

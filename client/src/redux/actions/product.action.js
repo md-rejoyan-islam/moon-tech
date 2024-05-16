@@ -1,4 +1,8 @@
-import { ADD_TO_CART, ADD_TO_WISHLIST, REMOVE_FROM_CART } from "./actionTypes";
+import {
+  ADD_TO_CART,
+  ADD_TO_WISHLIST,
+  REMOVE_FROM_CART,
+} from "../actionTypes/product.actionTypes";
 
 export const addToCart = (product) => {
   return {

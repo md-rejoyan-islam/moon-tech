@@ -1,9 +1,9 @@
+import { addToCart } from "@/redux/actions/product.action";
 import PropTypes from "prop-types";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../redux/reducers/productReducer/action";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();

@@ -1,6 +1,5 @@
 import createError from "http-errors";
 import filterQuery from "../helpers/filterQuery.mjs";
-import createError from "http-errors";
 import brandModel from "../models/brand.model.js";
 
 // get all brand service

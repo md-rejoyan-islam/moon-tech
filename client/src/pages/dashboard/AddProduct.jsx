@@ -65,7 +65,7 @@ const AddProduct = () => {
               />
             </div>
             <div>
-              <label className="mb-3 block text-sm font-medium text-black dark:text-white">
+              <label className="mb-3 block text-sm font-medium text-black dark:text-white -z-10">
                 Subject
               </label>
               <input
@@ -78,8 +78,8 @@ const AddProduct = () => {
               <label className="mb-3 block text-sm font-medium text-black dark:text-white">
                 Subject
               </label>
-              <div className="relative z-20 bg-transparent dark:bg-form-input">
-                <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+              <div className="relative z-[1] bg-transparent dark:bg-form-input">
+                <select className="relative -z-10 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
                   <option className="text-body" value="">
                     Type your subject
                   </option>

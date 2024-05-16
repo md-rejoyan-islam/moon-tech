@@ -1,7 +1,14 @@
+import { useDispatch } from "react-redux";
 import Accordion from "./Accordion";
 import PriceRangeCard from "./PriceRangeCard";
+import {
+  TOGGLE_AVAILABILITY,
+  TOGGLE_BRAND,
+} from "@/redux/actions/filter.action";
 
 function Sidebar() {
+  const dispatch = useDispatch();
+
   return (
     <aside className=" hidden lg:block space-y-2 min-w-[250px]     h-[calc(100vh-60px)] sticky top-4 ">
       <PriceRangeCard />
@@ -9,13 +16,31 @@ function Sidebar() {
         <Accordion title="Availability">
           <div className="flex flex-col gap-1 justify-start p-4">
             <label>
-              <input type="checkbox" /> &nbsp; In Stock
+              <input
+                type="checkbox"
+                onClick={() =>
+                  dispatch({ type: TOGGLE_AVAILABILITY, payload: "in_stock" })
+                }
+              />
+              &nbsp; In Stock
             </label>
             <label>
-              <input type="checkbox" /> &nbsp; Pre Order
+              <input
+                type="checkbox"
+                onClick={() =>
+                  dispatch({ type: TOGGLE_AVAILABILITY, payload: "pre_order" })
+                }
+              />
+              &nbsp; Pre Order
             </label>
             <label>
-              <input type="checkbox" /> &nbsp; Up Coming
+              <input
+                type="checkbox"
+                onClick={() =>
+                  dispatch({ type: TOGGLE_AVAILABILITY, payload: "up_comming" })
+                }
+              />
+              &nbsp; Up Coming
             </label>
           </div>
         </Accordion>
@@ -24,13 +49,29 @@ function Sidebar() {
         <Accordion title="Brand">
           <div className="flex flex-col gap-1 justify-start p-4">
             <label>
-              <input type="checkbox" /> &nbsp; HP
+              <input
+                type="checkbox"
+                onClick={() => dispatch({ type: TOGGLE_BRAND, payload: "HP" })}
+              />
+              &nbsp; HP
             </label>
             <label>
-              <input type="checkbox" /> &nbsp; Dell
+              <input
+                type="checkbox"
+                onClick={() =>
+                  dispatch({ type: TOGGLE_BRAND, payload: "Dell" })
+                }
+              />
+              &nbsp; Dell
             </label>
             <label>
-              <input type="checkbox" /> &nbsp; Lenovo
+              <input
+                type="checkbox"
+                onClick={() =>
+                  dispatch({ type: TOGGLE_BRAND, payload: "Lenovo" })
+                }
+              />
+              &nbsp; Lenovo
             </label>
             <label>
               <input type="checkbox" /> &nbsp; Apple

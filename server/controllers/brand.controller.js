@@ -137,7 +137,7 @@ export const getBrandById = asyncHandler(async (req, res) => {
  */
 export const deleteBrandById = asyncHandler(async (req, res) => {
   // id validation
-  checkMongoID(req.params.id);
+  checkMongoId(req.params.id);
 
   // brand delete
   const result = await deleteBrandServiceById(req.params.id);

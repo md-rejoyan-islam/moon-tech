@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Tables } from "./table/Table";
-import { productData } from "./Data";
+import { brandData } from "./Data";
 import productColumns from "./table/column/Product.column";
+import brandColumns from "./table/column/Brand.column";
 
-const ProductList = () => {
+const BrandList = () => {
   const { products } = useSelector((state) => state.product);
 
   const dispatch = useDispatch();
@@ -22,9 +23,9 @@ const ProductList = () => {
 
         <div className="overflow-x-auto p-3">
           <Tables
-            data={productData}
-            columns={productColumns}
-            from={"product_table"}
+            data={brandData}
+            columns={brandColumns}
+            from={"brand_table"}
           />
         </div>
       </div>
@@ -33,4 +34,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default BrandList;

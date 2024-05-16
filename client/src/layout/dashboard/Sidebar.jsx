@@ -23,6 +23,12 @@ const Sidebar = () => {
             <span>Add Product </span>
           </Link>
         </li>
+        <li className="hover:bg-[#fff]  border border-transparent hover:border-slate-100 hover:shadow-2xl  py-2 px-2">
+          <Link to="brand-list" className="flex gap-2 items-center">
+            <CiBoxList className="bg-[#fff] shadow-md hover:bg-white p-1 text-2xl rounded-sm" />
+            <span>Brand List</span>
+          </Link>
+        </li>
         <li className="mt-auto bg-red-100 shadow-lg py-2 px-1 rounded-md">
           <Link to="/" className="flex gap-2 items-center">
             <AiOutlineRollback /> Back to Home{" "}

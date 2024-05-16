@@ -1,6 +1,7 @@
 import createError from "http-errors";
 import filterQuery from "../helpers/filterQuery.mjs";
 import brandModel from "../models/brand.model.js";
+import pagination from "../utils/pagination.mjs";
 
 // get all brand service
 export const getAllBrandService = async (req, searchFields) => {
@@ -22,7 +23,7 @@ export const getAllBrandService = async (req, searchFields) => {
         return {
           ...brand,
           links: {
-            self: `/api/v1/brands/${brand.slug}`,
+            self: `/api/v1/brands/${brand._id}`,
           },
         };
       });

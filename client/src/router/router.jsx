@@ -7,6 +7,7 @@ import Cart from "../pages/main/Cart.jsx";
 import ProductList from "../pages/dashboard/ProductList.jsx";
 import AddProduct from "../pages/dashboard/AddProduct.jsx";
 import Dashboard from "../layout/dashboard/Dashboard.jsx";
+import BrandList from "@/pages/dashboard/BrandList.jsx";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "add-product",
         element: <AddProduct />,
+      },
+      {
+        path: "brand-list",
+        element: <BrandList />,
       },
     ],
   },

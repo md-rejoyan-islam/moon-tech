@@ -1,4 +1,5 @@
 import { Input } from "@/components/ui/input";
+import PropTypes from "prop-types";
 
 const BrandSearch = ({ table }) => {
   return (
@@ -11,6 +12,9 @@ const BrandSearch = ({ table }) => {
       className="max-w-sm"
     />
   );
+};
+BrandSearch.propTypes = {
+  table: PropTypes.object,
 };
 
 export default BrandSearch;

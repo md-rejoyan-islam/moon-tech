@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Tables } from "./table/Table";
 import { brandData } from "./Data";
-import productColumns from "./table/column/Product.column";
 import brandColumns from "./table/column/Brand.column";
+import { Tables } from "./table/Table";
 
 const BrandList = () => {
   const { products } = useSelector((state) => state.product);

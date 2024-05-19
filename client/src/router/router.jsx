@@ -8,6 +8,7 @@ import ProductList from "../pages/dashboard/ProductList.jsx";
 import AddProduct from "../pages/dashboard/AddProduct.jsx";
 import Dashboard from "../layout/dashboard/Dashboard.jsx";
 import BrandList from "@/pages/dashboard/BrandList.jsx";
+import DashboardHome from "@/pages/dashboard/DashboardHome.jsx";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
+        element: <DashboardHome />,
+      },
+      {
+        path: "product-list",
         element: <ProductList />,
       },
       {

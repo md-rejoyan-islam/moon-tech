@@ -5,7 +5,7 @@ import { AiOutlineRollback } from "react-icons/ai";
 import { FaShoppingBag } from "react-icons/fa";
 const Sidebar = () => {
   return (
-    <div className="col-span-2 w-[250px] h-screen bg-[#f8f9fe] z-10  py-5 px-3">
+    <div className="col-span-2 md:w-[250px] h-screen md::bg-[#f8f9fe] z-10  py-5 px-3">
       <ul className="flex gap-1  flex-col h-full">
         <li className="pb-8 px-2 flex gap-1 items-center ">
           <FaShoppingBag /> Admin Dashboard

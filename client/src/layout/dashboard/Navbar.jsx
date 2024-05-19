@@ -7,7 +7,7 @@ import Sidebar from "./Sidebar";
 import { HiMenu } from "react-icons/hi";
 function Navbar() {
   return (
-    <header className="flex sticky top-0 bg-white shadow-md justify-between items-center px-4 h-[70px] z-10">
+    <header className="flex sticky top-0 bg-white  border-b border-slate-100 justify-between items-center px-4 h-[70px] z-10">
       <div className="flex z-10">
         <Sheet className="lg:hidden ">
           <SheetTrigger asChild>

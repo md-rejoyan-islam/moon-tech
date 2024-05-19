@@ -15,12 +15,12 @@ const BrandList = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-full w-full ">
-      <div className="w-full  mx-auto   bg-white  border border-gray-200">
-        <header className="px-5 py-4 border-b border-gray-100">
-          <div className="font-semibold text-gray-800">Products</div>
+      <div className="w-full  mx-auto  ">
+        <header className="px-5 pt-2 border-b border-gray-100">
+          <div className="font-semibold text-gray-800">Brands</div>
         </header>
 
-        <div className="overflow-x-auto p-3">
+        <div className="overflow-x-auto pt-1 p-3">
           <Tables
             data={brandData}
             columns={brandColumns}

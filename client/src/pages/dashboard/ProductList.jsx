@@ -15,7 +15,7 @@ const ProductList = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-full w-full ">
-      <div className="w-full  mx-auto   bg-white  border border-gray-200">
+      <div className="w-full  mx-auto ">
         <header className="px-5 py-4 border-b border-gray-100">
           <div className="font-semibold text-gray-800">Products</div>
         </header>

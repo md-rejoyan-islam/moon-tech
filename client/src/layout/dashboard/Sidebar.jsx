@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { CiBoxList } from "react-icons/ci";
 import { MdAddBusiness } from "react-icons/md";
 import { AiOutlineRollback } from "react-icons/ai";
@@ -6,15 +6,17 @@ import { FaShoppingBag } from "react-icons/fa";
 import "./Style.css";
 const Sidebar = () => {
   return (
-    <div className="col-span-2 md:w-[250px] h-screen md::bg-[#f8f9fe] z-10  py-5 px-3 border-r">
+    <div className="col-span-2 md:w-[250px] h-screen md::bg-[#f8f9fe] z-10  py-5 px-3 border-r border-slate-100">
       <ul className="flex gap-1  flex-col h-full dashboard-sidebar-menu">
         <li className="pb-8 px-2 flex gap-1 items-center ">
-          <FaShoppingBag /> Admin Dashboard
+          <Link to={"/dashboard"} className="flex gap-2 items-center">
+            <FaShoppingBag /> Admin Dashboard
+          </Link>
         </li>
         <li>
           <NavLink
             to="product-list"
-            className="flex gap-2 items-center   py-2 px-2 hover:bg-blue-200  hover:shadow-2xl  border border-transparent hover:border-slate-200 rounded-sm"
+            className="flex gap-2 items-center   py-2 px-2 hover:bg-blue-200  hover:shadow-2xl  border border-transparent hover:border-slate-200 rounded-sm text-slate-600 "
           >
             <CiBoxList className="  shadow-md  bg-white p-1 text-2xl rounded-sm" />
             <span>Product List</span>
@@ -23,7 +25,7 @@ const Sidebar = () => {
         <li>
           <NavLink
             to="add-product"
-            className="flex gap-2 items-center   py-2 px-2 hover:bg-blue-200  hover:shadow-2xl  border border-transparent hover:border-slate-200 rounded-sm"
+            className="flex gap-2 items-center   py-2 px-2 hover:bg-blue-200  hover:shadow-2xl  border border-transparent hover:border-slate-200 rounded-sm text-slate-600 "
           >
             <MdAddBusiness className=" shadow-md  bg-white p-1 text-2xl rounded-sm" />
             <span>Add Product </span>
@@ -32,7 +34,7 @@ const Sidebar = () => {
         <li>
           <NavLink
             to="brand-list"
-            className="flex gap-2 items-center   py-2 px-2 hover:bg-blue-200  hover:shadow-2xl  border border-transparent hover:border-slate-200 rounded-sm"
+            className="flex gap-2 items-center   py-2 px-2 hover:bg-blue-200  hover:shadow-2xl  border border-transparent hover:border-slate-200 rounded-sm text-slate-600 "
           >
             <CiBoxList className=" shadow-md  bg-white p-1 text-2xl rounded-sm" />
             <span>Brand List</span>

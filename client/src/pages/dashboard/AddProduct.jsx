@@ -25,8 +25,8 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="flex flex-col gap-9 p-4">
-      <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-4">
+    <div className="flex flex-col gap-9 p-2">
+      <div className="rounded-sm  bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-2">
         <div className="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
           <h3 className="font-medium text-black dark:text-white">
             Product Form

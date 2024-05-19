@@ -11,7 +11,7 @@ const Dashboard = () => {
       <div className="col-span-10 w-full h-[calc(100vh-0px)] overflow-scroll  ">
         <Navbar />
 
-        <div>
+        <div className="p-2">
           <Outlet />
         </div>
       </div>

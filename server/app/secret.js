@@ -1,4 +1,10 @@
+import dotenv from "dotenv";
+
+dotenv.config();
+
 export const port = process.env.SERVER_PORT || 5050;
+
+export const client_whitelist = process.env.WHITE_LIST.split(",");
 
 export const hostname = "127.0.0.1";
 

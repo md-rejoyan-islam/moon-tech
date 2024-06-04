@@ -1,7 +1,8 @@
 import createError from "http-errors";
+import { client_whitelist } from "../app/secret.js";
 
 // whitelist is an array of url's that are allowed to access the api
-const whitelist = process.env.WHITE_LIST.split(",");
+const whitelist = client_whitelist;
 // corsOptions is an object with a function that checks if the origin is in the whitelist
 const corsOptions = {
   origin: function (origin, callback) {

@@ -1,0 +1,2 @@
+Tue Jun 04 2024 19:43:9  [error] : [7m[31m[1mFailed to connect to database[22m[39m[27m
+Tue Jun 04 2024 19:43:9  [error] : [7m[31m[1mError in connecting in database. querySrv EREFUSED _mongodb._tcp.cluster0.37oivsc.mongodb.net[22m[39m[27m

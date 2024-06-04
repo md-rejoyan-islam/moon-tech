@@ -1,0 +1,4 @@
+Tue Jun 04 2024 19:42:48  [error] : [7m[31m[1mFailed to connect to database[22m[39m[27m
+Tue Jun 04 2024 19:42:48  [error] : [7m[31m[1mError in connecting in database. Invalid scheme, expected connection string to start with "mongodb://" or "mongodb+srv://"[22m[39m[27m
+Tue Jun 04 2024 19:42:53  [error] : [7m[31m[1mFailed to connect to database[22m[39m[27m
+Tue Jun 04 2024 19:42:53  [error] : [7m[31m[1mError in connecting in database. Invalid scheme, expected connection string to start with "mongodb://" or "mongodb+srv://"[22m[39m[27m

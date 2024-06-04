@@ -3,9 +3,9 @@ import mongoose from "mongoose";
 const productSchema = mongoose.Schema(
   {
     brand: {
-      type: String,
-      required: [true, "Please enter brand name"],
-      trim: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Brand",
+      required: [true, "Please enter brand id"],
     },
     processor_brand: {
       type: String,

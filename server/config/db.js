@@ -23,7 +23,7 @@ const mongoBDConnect = async () => {
   } catch (error) {
     errorLogger.error(`Failed to connect to database`);
     // if faild to connect stop server
-    process.exit(1);
+    // process.exit(1);
   }
 };
 

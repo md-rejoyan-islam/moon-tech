@@ -1,0 +1,2 @@
+Tue May 21 2024 20:21:25  [error] : [7m[31m[1mFailed to connect to database[22m[39m[27m
+Tue May 21 2024 20:21:25  [error] : [7m[31m[1mError in connecting in database. connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017[22m[39m[27m

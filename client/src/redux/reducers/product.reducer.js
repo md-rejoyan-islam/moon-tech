@@ -4,6 +4,8 @@ import {
   GET_PRODUCTS_FAILED,
   GET_PRODUCTS_REQUEST,
   GET_PRODUCTS_SUCCESS,
+  PRODUCT_ERROR_EMPTY,
+  PRODUCT_MESSAGE_EMPTY,
   REMOVE_FROM_CART,
 } from "../actionTypes/product.actionTypes";
 import productInitialState from "../initialStates/product.initialState";
@@ -49,6 +51,20 @@ export const productReducer = (
       };
     case ADD_TO_WISHLIST:
       return {};
+
+    // product message empty
+    case PRODUCT_MESSAGE_EMPTY:
+      return {
+        ...state,
+        message: "",
+      };
+    // error message empty
+    case PRODUCT_ERROR_EMPTY:
+      return {
+        ...state,
+        error: "",
+      };
+
     default:
       return state;
   }

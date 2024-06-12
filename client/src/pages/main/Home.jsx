@@ -1,10 +1,9 @@
 import ProductCard from "../../components/ProductCard";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import BrandSection from "../../components/BrandSection";
 import SortingSection from "../../components/SortingSection";
 import Sidebar from "../../components/Sidebar";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "@/redux/thunk/product.thunk";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   // const {
@@ -15,7 +14,6 @@ const Home = () => {
   const [error, setError] = useState(null);
 
   const { products, setProducts } = useSelector((state) => state.products);
-  const dispatch = useDispatch();
 
   let content;
 
@@ -36,21 +34,6 @@ const Home = () => {
       <ProductCard key={index} product={product} />
     ));
   }
-
-  useEffect(() => {
-    dispatch(getAllProducts());
-    // setLoading(true);
-    // fetch("http://localhost:5050/api/v1/products")
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setLoading(false);
-    //     setProducts(data.data);
-    //   })
-    //   .catch(() => {
-    //     setLoading(false);
-    //     setError("Something went wrong");
-    //   });
-  }, [dispatch]);
 
   return (
     <div className="  mx-auto mb-10 mt-5 container ">

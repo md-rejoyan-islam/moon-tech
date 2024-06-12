@@ -22,14 +22,15 @@ const TopRated = () => {
   }
 
   if (!loading && !error && products.length) {
+    console.log(products);
     content = products
-      .filter((product) => product.rating >= 4)
+      .filter((product) => product.rating >= 2)
       .map((product, index) => <ProductCard key={index} product={product} />);
   }
 
   useEffect(() => {
     setLoading(true);
-    fetch("/data/products.json")
+    fetch("http://localhost:5050/api/v1/products")
       .then((res) => res.json())
       .then((data) => {
         setLoading(false);

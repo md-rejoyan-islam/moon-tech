@@ -9,31 +9,52 @@ const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="shadow-lg rounded-xl border   flex flex-col text-indigo-900 w-full">
+    <div className="shadow-lg rounded-xl border   flex flex-col text-sky-900 w-full">
       <div className="   mx-auto w-full ">
-        <img src={product?.image} className="w-full" alt={product?.model} />
+        {/* <img src={product?.images[0]} className="w-full" alt={product?.model} /> */}
+        {product?.images?.length && (
+          <img
+            src={product?.images[0]}
+            className="w-full"
+            alt={product?.title}
+          />
+        )}
       </div>
       <div className="p-3 border-t flex-1 flex justify-between flex-col">
         <div className="pb-4">
-          <h1 className="font-bold text-center">{product?.model}</h1>
-          <p className="text-center font-semibold mb-3">
-            Rating: {product.rating}
-          </p>
-          <div className=" flex-1">
-            <ul className="space-y-2">
-              {product?.keyFeature.map((feature, index) => {
-                return (
-                  <li className="text-sm " key={index}>
-                    {feature}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          <h1 className="font-bold text-center pb-4">
+            <span>{product?.title} </span>
+            <span>{product?.processor?.model} </span>
+            <span>{product?.memory?.ram} Ram </span>
+            <span>
+              {product?.storage?.capacity} {product?.storage?.type}
+            </span>
+          </h1>
+          <ul className=" pl-4 list-disc text-slate-500 text-[14px] space-y-2">
+            <li>
+              Processor: {product?.processor?.model} with{" "}
+              {product?.processor?.core} core CPU (
+              {product?.processor?.frequency})
+            </li>
+            <li>Ram : {product?.memory?.ram} </li>
+            <li>
+              Strorage: {product?.storage?.capacity} {product?.storage?.type}
+            </li>
+            <li>
+              Display: {product?.display?.size} {product?.display?.type} (
+              {product?.display?.resolution})
+            </li>
+            <li>
+              Features: {product?.display?.features} {product?.display?.touch}
+            </li>
+          </ul>
+          {/* <p className="text-center font-semibold mb-3">
+            Rating: {product?.rating}
+          </p> */}
         </div>
         <div className="border-t pt-2">
           <button className="w-full text-center text-red-500 font-semibold">
-            153,00 $
+            {product?.price?.regular} <span className="text-2xl">৳</span>
           </button>
           {location.pathname === "/" && (
             <div className="flex gap-2 mt-3 ">

@@ -3,19 +3,21 @@ import { BsFillCartFill } from "react-icons/bs";
 import { IoIosListBox } from "react-icons/io";
 import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 import { useState } from "react";
+import logo from "../../assets/moon-tech-logo.png";
 
 const Navbar = () => {
   const [openSmallMenu, setOpenSmallMenu] = useState(false);
   return (
     <>
-      <header className="max-w-7xl mx-auto xl:rounded-2xl bg-[#c7d2fe] xl:mt-2 ">
+      <header className=" mx-auto  bg-[#002a5c]  ">
         <nav>
           <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 md:p-3">
             <Link
               to={"/"}
               className="flex items-center space-x-3 rtl:space-x-reverse text-indigo-900 font-semibold"
             >
-              Moon Tech
+              {/* Moon Tech */}
+              <img src={logo} className="w-20" alt="" />
             </Link>
             <button
               data-collapse-toggle="navbar-default"
@@ -54,7 +56,7 @@ const Navbar = () => {
                 <li>
                   <NavLink
                     to="/"
-                    className="block py-2 px-3  rounded hover:bg-violet-500 hover:text-white md:text-indigo-900 font-semibold md:border-0"
+                    className="block py-2 px-3  rounded hover:bg-violet-500 text-white  font-semibold md:border-0"
                   >
                     Home
                   </NavLink>
@@ -62,7 +64,7 @@ const Navbar = () => {
                 <li>
                   <NavLink
                     to="/top-rated"
-                    className="block py-2 px-3  rounded hover:bg-violet-500 hover:text-white md:text-indigo-900 font-semibold md:border-0 "
+                    className="block py-2 px-3  rounded hover:bg-violet-500 text-white  font-semibold md:border-0 "
                   >
                     Top Rated
                   </NavLink>
@@ -70,7 +72,7 @@ const Navbar = () => {
                 <li>
                   <NavLink
                     to={"/about"}
-                    className="block py-2 px-3  rounded hover:bg-violet-500 hover:text-white md:text-indigo-900 font-semibold md:border-0 "
+                    className="block py-2 px-3  rounded hover:bg-violet-500 text-white  font-semibold md:border-0 "
                   >
                     About
                   </NavLink>

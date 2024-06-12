@@ -5,7 +5,7 @@ import { productData } from "./Data";
 import productColumns from "./table/column/Product.column";
 
 const ProductList = () => {
-  const { products } = useSelector((state) => state.product);
+  const { products } = useSelector((state) => state.products);
 
   const dispatch = useDispatch();
 

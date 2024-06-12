@@ -1,6 +1,7 @@
 import filterQuery from "../helpers/filterQuery.mjs";
 import productModel from "../models/product.model.js";
 import createError from "http-errors";
+import pagination from "../utils/pagination.mjs";
 
 // get all product service
 export const getAllProductService = async (req, searchFields) => {

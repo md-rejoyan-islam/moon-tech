@@ -5,7 +5,7 @@ import { userReducer } from "../reducers/usersReducer";
 import filterReducer from "../reducers/filter.reducer";
 
 const rootReducer = combineReducers({
-  product: productReducer,
+  products: productReducer,
   user: userReducer,
   filter: filterReducer,
 });

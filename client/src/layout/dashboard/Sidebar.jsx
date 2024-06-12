@@ -6,7 +6,7 @@ import { FaShoppingBag } from "react-icons/fa";
 import "./Style.css";
 const Sidebar = () => {
   return (
-    <div className="col-span-2 md:w-[250px] h-screen md::bg-[#f8f9fe] z-10  py-5 px-3 border-r border-slate-100">
+    <div className="col-span-2 md:w-[250px] h-screen md:bg-[#f8f9fe] z-10  py-5 px-3 border-r border-slate-100">
       <ul className="flex gap-1  flex-col h-full dashboard-sidebar-menu">
         <li className="pb-8 px-2 flex gap-1 items-center ">
           <Link to={"/dashboard"} className="flex gap-2 items-center">

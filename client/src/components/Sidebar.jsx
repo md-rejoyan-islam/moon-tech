@@ -5,8 +5,11 @@ import {
   TOGGLE_AVAILABILITY,
   TOGGLE_BRAND,
 } from "@/redux/actions/filter.action";
+import { useState } from "react";
 
 function Sidebar() {
+  const [brands, setBrands] = useState([]);
+
   const dispatch = useDispatch();
 
   return (

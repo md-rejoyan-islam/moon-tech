@@ -5,7 +5,7 @@ import brandColumns from "./table/column/Brand.column";
 import { Tables } from "./table/Table";
 
 const BrandList = () => {
-  const { products } = useSelector((state) => state.product);
+  const { products } = useSelector((state) => state.products);
 
   const dispatch = useDispatch();
 
